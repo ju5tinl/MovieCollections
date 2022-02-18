@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.*;
 
 public class MovieCollection
 {
@@ -149,9 +150,6 @@ public class MovieCollection
     }
   }
 
-  private void sortCast(String castToSort){
-    
-  }
   
   private void displayMovieInfo(Movie movie)
   {
@@ -178,10 +176,34 @@ public class MovieCollection
       String cast = movies.get(i).getCast();
       cast = cast.toLowerCase();
       if(cast.indexOf(castkey) != -1){
-        castList.add(movies.get(i).getCast());
-      }
+        String actors = movies.get(i).getCast();
+        String[] actorlist = actors.split("\\|");
+        for(int j = 0; j < actorlist.length;j++){
+          if(actorlist[j].toLowerCase().indexOf(castkey) != -1){
+            castList.add(actorlist[j]);
+            for(int ii = 0; ii < castList.size(); ii++){
+              if(actorlist[j] == castList.get(ii)){
 
+              }
+            }
+          }
+        }
+      }
     }
+      Collections.sort(castList);
+    for (int i = 0; i < castList.size(); i++)
+    {
+      String castp = castList.get(i);
+
+      int choiceNum = i + 1;
+
+      System.out.println("" + choiceNum + ". " + castp);
+    }
+    System.out.println("Which actor do you want to see?");
+    System.out.print("Enter number: ");
+    int Castchoice = scanner.nextInt();
+    scanner.nextLine();
+    String selectedCast = castList.get(Castchoice - 1);
 
   }
 
