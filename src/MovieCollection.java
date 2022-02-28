@@ -181,13 +181,15 @@ public class MovieCollection
         for(int j = 0; j < actorlist.length;j++){
           if(actorlist[j].toLowerCase().indexOf(castkey) != -1){
             castList.add(actorlist[j]);
-            for(int ii = 0; ii < castList.size(); ii++){
-              if(actorlist[j] == castList.get(ii)){
-
-              }
-            }
           }
         }
+      }
+    }
+    String[] list = castList.toArray(new String[castList.size()]);
+    castList.clear();
+    for(int ii = 0; ii < list.length; ii++){
+      if(!castList.contains(list[ii])){
+        castList.add(list[ii]);
       }
     }
       Collections.sort(castList);
@@ -204,6 +206,8 @@ public class MovieCollection
     int Castchoice = scanner.nextInt();
     scanner.nextLine();
     String selectedCast = castList.get(Castchoice - 1);
+    ArrayList<Movie> MoviesAct = new ArrayList<Movie>();
+
 
   }
 
