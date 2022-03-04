@@ -167,7 +167,7 @@ public class MovieCollection
   
   private void searchCast()
   {
-    System.out.print("Enter a cast search term: ");
+    System.out.print("Enter an actor: ");
     String castkey = scanner.nextLine();
     castkey = castkey.toLowerCase();
     ArrayList<String> castList = new ArrayList<String>();
@@ -207,8 +207,28 @@ public class MovieCollection
     scanner.nextLine();
     String selectedCast = castList.get(Castchoice - 1);
     ArrayList<Movie> MoviesAct = new ArrayList<Movie>();
-
-
+    for(int i = 0; i < movies.size(); i++)
+    {
+      if(movies.get(i).getCast().indexOf(selectedCast) != -1)
+      {
+        MoviesAct.add(movies.get(i));
+      }
+    }
+    sortResults(MoviesAct);
+    for(int i = 0; i < MoviesAct.size(); i++)
+    {
+      String castm = MoviesAct.get(i).getTitle();
+      int choiceNum = i + 1;
+      System.out.println("" + choiceNum + ". " + castm);
+    }
+    System.out.println("Which movie do you want to see?");
+    System.out.print("Enter number: ");
+    int moviechoice = scanner.nextInt();
+    scanner.nextLine();
+    Movie selectedmovie = MoviesAct.get(moviechoice - 1);
+    displayMovieInfo(selectedmovie);
+    System.out.println("\n ** Press Enter to Return to Main Menu **");
+    scanner.nextLine();
   }
 
   private void searchKeywords()
